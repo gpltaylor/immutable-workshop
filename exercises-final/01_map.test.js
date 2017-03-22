@@ -21,7 +21,7 @@ test('Get Map property', () => {
     .toEqual(2);
 })
 
-test('update a Map', () => {
+test('update a Map using set', () => {
   var Immutable = require('immutable');
   var map1 = Immutable.Map({ a: 1, b: 2, c: 3 });
   var map2 = map1.set("a", 10);
@@ -43,7 +43,7 @@ test('update a Map using merge', () => {
     .toEqual({ a: 10, b: 2, c: 3, d: 4 });
 })
 
-test.only('update a Map using update', () => {
+test('update a Map using update', () => {
   var Immutable = require('immutable');
   var map1 = Immutable.Map({ a: 1, b: 2, c: 3 });
   var map2 = map1
@@ -68,4 +68,17 @@ test('Delete from map', () => {
 
   expect(map2.toJS())
     .toEqual({ b: 2, c: 3 });
+})
+
+test('updateIn map', () => {
+  var Immutable = require('immutable');
+  var map1 = Immutable.Map({ inMap: Immutable.Map({ inList: Immutable.List([1, 2, 3]) }) });
+  const map2 = map1.updateIn(['inMap', 'inList'], list => list.push(4));
+
+  expect(map2.toJS())
+    .toEqual({
+      inMap: {
+        inList: [1, 2, 3, 4]
+      }
+    });
 })
