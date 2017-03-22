@@ -1,0 +1,7 @@
+{
+  "testEnvironment": "node",
+  "roots": [
+    "templates"
+  ],
+  "setupTestFrameworkScriptFile": "./common/helpers/expect-to-be-valid-syntax.js"
+}
